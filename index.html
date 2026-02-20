@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>故事接龍 - WebRTC 即時對戰</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <section id="view-home" class="view active">
+      <h1>故事接龍</h1>
+      <div class="card">
+        <input type="text" id="input-nickname" placeholder="輸入您的暱稱..." maxlength="10">
+        <div class="actions">
+          <button id="btn-create-room">建立房間</button>
+          <div class="divider">或</div>
+          <input type="text" id="input-room-code" placeholder="輸入房間碼" maxlength="6">
+          <button id="btn-join-room" class="secondary">加入房間</button>
+        </div>
+        <p id="home-msg" class="msg"></p>
+      </div>
+    </section>
+
+    <section id="view-room" class="view">
+      <div class="header">
+        <h2>房間：<span id="display-room-code"></span></h2>
+        <button id="btn-leave-room" class="danger">離開</button>
+      </div>
+      
+      <div class="card">
+        <h3>玩家列表 <span id="player-count">(1/8)</span></h3>
+        <ul id="player-list"></ul>
+      </div>
+
+      <div class="card host-only" id="host-panel">
+        <h3>遊戲設定 (房主專屬)</h3>
+        <label>
+          回合數：
+          <input type="number" id="setting-rounds" value="3" min="1" max="10">
+        </label>
+        <button id="btn-start-game">開始遊戲</button>
+      </div>
+    </section>
+
+    <section id="view-game" class="view">
+      <div class="header">
+        <h2>回合 <span id="display-round">1</span> / <span id="display-total-rounds">3</span></h2>
+        <div id="game-status">準備中...</div>
+      </div>
+
+      <div class="card" id="story-history-container">
+        <h3>前情提要：</h3>
+        <div id="story-history" class="story-content"></div>
+      </div>
+
+      <div class="card">
+        <h3>輪到你了：</h3>
+        <textarea id="input-story" placeholder="接續寫下故事..." rows="4"></textarea>
+        <div class="game-actions">
+          <button id="btn-lock-story">鎖定送出</button>
+          <button id="btn-unlock-story" class="hidden secondary">修改內容</button>
+        </div>
+        <p class="lock-status">已鎖定人數：<span id="display-lock-count">0</span> / <span id="display-total-players">0</span></p>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
